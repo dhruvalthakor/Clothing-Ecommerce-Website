@@ -1,10 +1,17 @@
-import React, { useEffect, useRef } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 function Header() {
     const barRef = useRef(null);
     const closeRef = useRef(null);
     const navRef = useRef(null);
+    const [products, setProducts] = useState([]);
+ const [lsData, setLsData] = useState(
+        JSON.parse(localStorage.getItem("clothwabsitetoken")) || {}
+    );
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const bar = barRef.current;
@@ -38,6 +45,31 @@ function Header() {
         };
     }, []);
 
+    useEffect(() => {
+        if (!lsData.token) {
+            navigate("/singin");
+            return;
+        }
+
+        const config = {
+            headers: {
+                authorization: `Bearer ${lsData.token}`,
+            },
+        };
+
+        axios
+            .get("http://localhost:8060/cart", config)
+            .then((res) => {
+                setProducts(res.data.carts || []);
+            })
+            .catch((err) => {
+                console.error(err);
+                if (err.response && err.response.status === 401) {
+                    navigate("/");
+                }
+            });
+    }, [lsData.token, navigate]);
+
     return (
         <>
             <section id="header">
@@ -50,8 +82,8 @@ function Header() {
                         <li><Link href="about.html">About</Link></li>
                         <li><Link href="contact.html">Contact</Link></li>
                         <li>
-                            <a href="cart.html" id="lg-bag"><i className="fal fa-shopping-bag"></i></a>
-                            <span className="quantity">0</span>
+                            <Link to={"/ShoppingCart"} id="lg-bag"><i className="fal fa-shopping-bag"></i></Link>
+                            <span className="quantity">{products.length}</span>
                         </li>
                         <li>
                             <a href="#" id="close" ref={closeRef}><i className="far fa-times"></i></a>
@@ -59,9 +91,9 @@ function Header() {
                     </ul>
                 </div>
                 <div id="mobile">
-                    <a href="cart.html"><i className="fal fa-shopping-bag"></i>
+                    <Link href="cart.html"><i className="fal fa-shopping-bag"></i>
                         <span className="quantity">0</span>
-                    </a>
+                    </Link>
                     <i id="bar" className="fas fa-outdent" ref={barRef}></i>
                 </div>
             </section>

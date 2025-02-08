@@ -13,6 +13,8 @@ import Signin from "./usercomponents/signin";
 import SignUp from "./usercomponents/signup";
 import Prodectdetail from "./usercomponents/Prodectdetail";
 import Shop from "./usercomponents/Shop";
+import ShoppingCart from "./usercomponents/ShoppingCart";
+import { SignIn } from "./pages/auth";
 
 
 
@@ -27,6 +29,9 @@ function Prodectdetailpage() {
 function ShopPage() {
   return <><Header/>,<Shop/>,<Newsletter/><Footer/>,</>;
 }
+function ShoppingCartpage() {
+  return <><Header/>,<ShoppingCart/>,<Newsletter/><Footer/>,</>;
+}
 
 function App() {
   
@@ -36,9 +41,13 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/Prodectdetail/:id" element={<Prodectdetailpage/>} />
       <Route path="/shop" element={<ShopPage/>} />
+      <Route path="/ShoppingCart" element={<ShoppingCartpage/>} />
       <Route path="/singin" element={<Signin/>} />
       <Route path="/singup" element={<SignUp/>} />
       <Route path="/dashboard/*" element={<Dashboard />} />
+      <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+      <Route path="/AdminSignIn" element={<SignIn/>} />
+
     </Routes>
   );
 }

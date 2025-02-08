@@ -31,6 +31,7 @@ adminrouter.post("/addamin",async(req,res)=>{
 
 adminrouter.post("/adminlogin", async (req, res) => {
 
+
     try {
       const user = await adimnmodel.findOne({ email: req.body.email });
       if (user) {

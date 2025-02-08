@@ -312,6 +312,17 @@ flex-wrap: wrap
   
 }
 
+.new-icone{
+  position: absolute;
+  z-index: 1;
+  top: -20px;
+  right: 0;
+}
+.new-icone .new-icone-img{
+  width: 35% !important;
+
+}
+
 #banner{
   display: flex;
   flex-direction: column;
@@ -651,7 +662,13 @@ font-size:16px;
 margin-right: 10px;
 /* outline: none; */
 }
-
+.cart-datile input{
+  width: 50px;
+height: 40px;
+padding-left: 10px;
+font-size:16px;
+margin-right: 10px;
+}
 #prodetails .single-pro-details button{
   
   min-width: 130px;

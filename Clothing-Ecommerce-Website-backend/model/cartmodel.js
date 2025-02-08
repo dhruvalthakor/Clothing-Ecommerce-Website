@@ -10,6 +10,14 @@ const cartschema=mongoose.Schema({
         type: Object,
         required: true,
     },
+    size:{
+        type: Object,
+        required: true,
+    },
+    quantity:{
+        type: Object,
+        required: true,
+    }
 });
 
 const cartmodel=mongoose.model("cart",cartschema);

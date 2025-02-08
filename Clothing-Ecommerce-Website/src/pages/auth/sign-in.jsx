@@ -1,16 +1,57 @@
 import {Card,Input,Checkbox,Button,Typography,} from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export function SignIn() {
+
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
+  
+  const [value, setValue] = useState(() => {
+    const storedValue = localStorage.getItem("clothwabsitetokenadmin");
+    return storedValue ? JSON.parse(storedValue) : null;
+  });
+  
+  const navigate = useNavigate();
+  
+  const handleData = (e) => {
+    e.preventDefault();
+  console.log("adimin");
+  
+    axios.post(`http://localhost:8060/admin/adminlogin`, form)
+      .then((res) => {
+        console.log("Response:", res.data);
+        if (res.data) {
+          setValue(res.data); // Update state with the response
+          localStorage.setItem("clothwabsitetokenadmin", JSON.stringify(res.data)); // Store in localStorage
+          navigate("/*");
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting data:", error);
+      });
+  };
+  
+  // Log the value whenever it changes (useful for debugging)
+  useEffect(() => {
+    console.log("Updated Value:", value);
+  }, [value]);
+  
+
+
+
   return (
     <section className="m-8 flex gap-4">
       <div className="w-full lg:w-3/5 mt-24">
         <div className="text-center">
-          <Typography variant="h2" className="font-bold mb-4">Sign In</Typography>
+          <Typography variant="h2" className="font-bold mb-4">Admin Sign In</Typography>
           <Typography variant="paragraph" color="blue-gray" className="text-lg font-normal">Enter your email and password to Sign In.</Typography>
         </div>
-        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2">
+        <form className="mt-8 mb-2 mx-auto w-80 max-w-screen-lg lg:w-1/2" onSubmit={handleData}>
           <div className="mb-1 flex flex-col gap-6">
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
               Your email
@@ -22,6 +63,8 @@ export function SignIn() {
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
             <Typography variant="small" color="blue-gray" className="-mb-3 font-medium">
               Password
@@ -34,6 +77,8 @@ export function SignIn() {
               labelProps={{
                 className: "before:content-none after:content-none",
               }}
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
           </div>
           <Checkbox
@@ -54,7 +99,7 @@ export function SignIn() {
             }
             containerProps={{ className: "-ml-2.5" }}
           />
-          <Button className="mt-6" fullWidth>
+          <Button type="submit" className="mt-6" fullWidth>
             Sign In
           </Button>
 

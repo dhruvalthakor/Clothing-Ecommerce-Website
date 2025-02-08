@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// app.get("/", (req, res) => res.send("Express on Vercel"));
 //admin
 app.use("/admin",adminrouter);
 app.use("/product",productrouter);
@@ -21,7 +22,6 @@ app.use("/product",productrouter);
 app.use("/user",userrouter);
 app.use(auth);
 app.use("/cart",cartRouter);
-
 
 
 app.listen(process.env.PORT,(err)=>{
