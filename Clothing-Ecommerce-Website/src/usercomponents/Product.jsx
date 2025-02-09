@@ -28,6 +28,8 @@ function Product() {
           .get("http://localhost:8060/product", config)
           .then((res) => {
               setproducts(res.data.product || []);
+              console.log(res);
+              
           })
           .catch((err) => {
               console.error(err);

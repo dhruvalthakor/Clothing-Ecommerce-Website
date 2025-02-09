@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 //admin
 app.use("/admin",adminrouter);
 app.use("/product",productrouter);
-
+ 
 //user
 app.use("/user",userrouter);
 app.use(auth);
