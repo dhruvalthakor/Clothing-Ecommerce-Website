@@ -28,13 +28,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => res.send("Express Vercel"));
 //admin
-app.use("/admin",adminrouter);
+app.use("/api/admin",adminrouter);
 app.use("/api/product",productrouter);
  
 //user
-app.use("/user",userrouter);
+app.use("/api/user",userrouter);
 app.use(auth);
-app.use("/cart",cartRouter);
+app.use("/api/cart",cartRouter);
 
 
 app.listen(process.env.PORT,(err)=>{

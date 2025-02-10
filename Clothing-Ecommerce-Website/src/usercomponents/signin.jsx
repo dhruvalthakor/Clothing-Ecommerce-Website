@@ -20,7 +20,7 @@ export function Signin() {
   const handleData = (e) => {
     e.preventDefault();
   
-    axios.post(`https://clothing-ecommerce-website-onjj.vercel.app/user/userlogin`, form)
+    axios.post(`/api/user/userlogin`, form)
       .then((res) => {
         console.log("Response:", res.data);
         if (res.data) {

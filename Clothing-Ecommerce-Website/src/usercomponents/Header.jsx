@@ -58,7 +58,7 @@ function Header() {
         };
 
         axios
-            .get("https://clothing-ecommerce-website-onjj.vercel.app/cart", config)
+            .get("/api/cart", config)
             .then((res) => {
                 setProducts(res.data.carts || []);
             })

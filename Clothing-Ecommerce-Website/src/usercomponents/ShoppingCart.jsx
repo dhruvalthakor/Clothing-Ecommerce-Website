@@ -22,7 +22,7 @@ const ShoppingCart = () => {
         };
 
         axios
-            .get("https://clothing-ecommerce-website-onjj.vercel.app/cart", config)
+            .get("/api/cart", config)
             .then((res) => {
                 setProducts(res.data.carts || []);
             })
@@ -52,7 +52,7 @@ const ShoppingCart = () => {
     console.log(id);
     
             axios
-                .delete(`https://clothing-ecommerce-website-onjj.vercel.app/cart/deletecart/${id}`, config)
+                .delete(`/api/cart/deletecart/${id}`, config)
                 .then((res) => {
               
                     
