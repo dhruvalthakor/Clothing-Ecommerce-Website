@@ -25,7 +25,7 @@ function Product() {
       };
 
       axios
-          .get("http://localhost:8060/product", config)
+          .get("https://clothing-ecommerce-website-onjj.vercel.app/product", config)
           .then((res) => {
               setproducts(res.data.product || []);
               console.log(res);

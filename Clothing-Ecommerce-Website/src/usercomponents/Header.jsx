@@ -58,7 +58,7 @@ function Header() {
         };
 
         axios
-            .get("http://localhost:8060/cart", config)
+            .get("https://clothing-ecommerce-website-onjj.vercel.app/cart", config)
             .then((res) => {
                 setProducts(res.data.carts || []);
             })

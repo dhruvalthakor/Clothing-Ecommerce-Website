@@ -26,7 +26,7 @@ function Prodectdetail() {
     };
 
     axios
-      .get(`http://localhost:8060/product`, config)
+      .get(`https://clothing-ecommerce-website-onjj.vercel.app/product`, config)
       .then((res) => {
         const allProducts = res.data.product || [];
         const foundProduct = allProducts.find((prod) => prod._id === id); // Match by ID
@@ -53,7 +53,7 @@ function Prodectdetail() {
       },
     };
   
-    axios.post(`http://localhost:8060/cart/addcart/${id}`,form,config)
+    axios.post(`https://clothing-ecommerce-website-onjj.vercel.app/cart/addcart/${id}`,form,config)
       .then((res) => {
         console.log("Response:", res.data);
         
