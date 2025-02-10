@@ -9,7 +9,9 @@ const auth = require("./middleware/auth");
 const cartRouter = require("./routers/cartRouter");
 
 const app=express();
-app.use(cors());
+// const cors = require('cors');
+app.use(cors({ origin: 'https://clothing-ecommerce-website-seven.vercel.app' }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
