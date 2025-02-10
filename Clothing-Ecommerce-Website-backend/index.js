@@ -10,8 +10,8 @@ const cartRouter = require("./routers/cartRouter");
 
 const app=express();
 // const cors = require('cors');
-app.use(cors({ origin: 'https://clothing-ecommerce-website-seven.vercel.app' }));
-app.use(cors());
+// app.use(cors({ origin: 'https://clothing-ecommerce-website-seven.vercel.app' }));
+// app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
