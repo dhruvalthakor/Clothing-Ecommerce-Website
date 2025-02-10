@@ -78,16 +78,16 @@ function Product() {
   
   return (
     <>
-      <section id="product1" class="section-p1">
+      <section id="product1" className="section-p1">
   <h2>Featured Products</h2>
   <p>Summer Collection New Modern Design</p>
-  <div class="pro-container">
+  <div className="pro-container">
   
     {
       products.slice(0, 8).map((data)=>(
-        <div class="pro relative" key={data._id} onClick={() => handleProductClick(data)}>
+        <div className="pro relative" key={data._id} onClick={() => handleProductClick(data)}>
         <img src={data.productimage} alt=""/>
-        <div class="des">
+        <div className="des">
           <span>{data.productbrand}</span>
           <h5>{data.productname}</h5>
           <div className="star">
@@ -101,7 +101,7 @@ function Product() {
           <h4>${data.productprice}</h4>
           {newiconefuthion(data.createdDate)}
         </div>
-        <a href=""><i class="fal fa-shopping-cart cart"></i></a>
+        <a href=""><i className="fal fa-shopping-cart cart"></i></a>
       </div>
       ))
     }

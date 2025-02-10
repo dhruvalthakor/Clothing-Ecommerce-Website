@@ -76,10 +76,10 @@ function Shop() {
 
     return (
         <>
-            <section id="product1" class="section-p1 mt-10">
+            <section id="product1" className="section-p1 mt-10">
                 <h2>Featured Products</h2>
                 <p>Summer Collection New Modern Design</p>
-                <div class="pro-container">
+                <div className="pro-container">
 
                 {
     products.map((product) => (

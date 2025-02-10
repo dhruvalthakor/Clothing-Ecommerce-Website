@@ -9,21 +9,25 @@ const auth = require("./middleware/auth");
 const cartRouter = require("./routers/cartRouter");
 
 const app=express();
-// const cors = require('cors');
-app.use(cors({ origin: 'https://clothing-ecommerce-website-mu76.vercel.app' }));
-// app.use(cors());
-// app.use(
-//     cors({
-//       origin: function (origin, callback) {
-//         if (!origin || allowedOrigins.includes(origin)) {
-//           callback(null, true);
-//         } else {
-//           callback(new Error("CORS policy does not allow this origin"));
-//         }
-//       },
-//     })
-//   );
-app.use(express.json());
+
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://clothing-ecommerce-website-mu76.vercel.app",
+  ];
+  
+  app.use(
+    cors({
+      origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("CORS policy does not allow this origin"));
+        }
+      },
+    })
+  );
+  
+  app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => res.send("Express Vercel"));
