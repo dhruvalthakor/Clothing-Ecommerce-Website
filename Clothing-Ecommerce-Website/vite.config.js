@@ -5,7 +5,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://clothing-ecommerce-website-onjj.vercel.app',
+        target: 'https://clothing-ecommerce-website-mu76.vercel.app',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
