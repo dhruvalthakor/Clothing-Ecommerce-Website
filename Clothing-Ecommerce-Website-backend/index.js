@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => res.send("Express on Vercel"));
 //admin
 app.use("/admin",adminrouter);
-app.use("/product",productrouter);
+app.use("/api/product",productrouter);
  
 //user
 app.use("/user",userrouter);

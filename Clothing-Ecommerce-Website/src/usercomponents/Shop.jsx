@@ -23,7 +23,7 @@ function Shop() {
         };
 
         axios
-        .get("https://clothing-ecommerce-website-onjj.vercel.app/product", config)
+        .get("/api/product", config)
             .then((res) => {
                 console.log(res);
                 
