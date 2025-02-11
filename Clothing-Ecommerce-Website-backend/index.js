@@ -17,7 +17,7 @@ app.use(cors({
 }));
   
 
-app.get("/", (req, res) => res.send("Express Vercel","This is the cart endpoint"));
+app.get("/", (req, res) => res.send("Express Vercel"));
 //admin
 app.use("/admin",adminrouter);
 app.use("/product",productrouter);
