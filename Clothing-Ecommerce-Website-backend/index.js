@@ -11,7 +11,7 @@ const cartRouter = require("./routers/cartRouter");
 const app=express();
 
 app.use(cors({
-  origin: 'https://clothing-ecommerce-website-mu76.vercel.app/'
+  origin: 'https://clothing-ecommerce-website-mu76.vercel.app'
 }));
   
   app.use(express.json());
