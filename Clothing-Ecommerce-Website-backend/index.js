@@ -9,13 +9,13 @@ const auth = require("./middleware/auth");
 const cartRouter = require("./routers/cartRouter");
 
 const app=express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-  origin: 'https://clothing-ecommerce-website-seven.vercel.app'
+  origin: 'https://clothing-ecommerce-website-mu76.vercel.app/'
 }));
   
+  app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => res.send("Express Vercel"));
 //admin
