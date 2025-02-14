@@ -25,8 +25,8 @@ function Product() {
       };
 
       axios
-          .get("https://clothing-ecommerce-website-mu76.vercel.app/product", config)
-          .then((res) => {
+          .get("https://clothing-ecommerce-website-backend.vercel.app/product", config)
+        .then((res) => {
               setproducts(res.data.product || []);
               console.log(res);
               
