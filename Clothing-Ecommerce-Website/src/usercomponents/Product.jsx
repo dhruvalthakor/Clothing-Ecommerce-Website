@@ -30,7 +30,7 @@ function Product() {
               setproducts(res.data.product || []);
               console.log(res);
               
-          })
+          }) 
           .catch((err) => {
               console.error(err);
               if (err.response && err.response.status === 401) {
