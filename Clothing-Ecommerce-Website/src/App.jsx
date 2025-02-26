@@ -44,8 +44,8 @@ function App() {
       <Route path="/ShoppingCart" element={<ShoppingCartpage/>} />
       <Route path="/singin" element={<Signin/>} />
       <Route path="/singup" element={<SignUp/>} />
-      <Route path="/dashboard/*" element={<Dashboard />} />
-      <Route path="*" element={<Navigate to="/dashboard/home" replace />} />
+      {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
+      {/* <Route path="*" element={<Navigate to="/dashboard/home" replace />} /> */}
       <Route path="/AdminSignIn" element={<SignIn/>} />
 
     </Routes>
