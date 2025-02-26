@@ -16,7 +16,7 @@ const navigate = useNavigate();
 const handleData = (e) => {
     e.preventDefault();
 
-    axios.post(`https://clothing-ecommerce-website-mu76.vercel.app/user/adduser`,form)
+    axios.post(`https://clothing-ecommerce-website-backend.onrender.com/user/adduser`,form)
         .then((res) => {
             navigate("/singin");
         })

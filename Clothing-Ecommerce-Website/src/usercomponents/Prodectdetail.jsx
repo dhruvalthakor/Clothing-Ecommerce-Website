@@ -26,7 +26,7 @@ function Prodectdetail() {
     };
 
     axios
-      .get(`https://clothing-ecommerce-website-mu76.vercel.app/product`, config)
+      .get(`https://clothing-ecommerce-website-backend.onrender.com/product`, config)
       .then((res) => {
         const allProducts = res.data.product || [];
         const foundProduct = allProducts.find((prod) => prod._id === id); // Match by ID
@@ -53,7 +53,7 @@ function Prodectdetail() {
       },
     };
   
-    axios.post(`https://clothing-ecommerce-website-mu76.vercel.app/cart/addcart/${id}`,form,config)
+    axios.post(`https://clothing-ecommerce-website-backend.onrender.com/cart/addcart/${id}`,form,config)
       .then((res) => {
         console.log("Response:", res.data);
         

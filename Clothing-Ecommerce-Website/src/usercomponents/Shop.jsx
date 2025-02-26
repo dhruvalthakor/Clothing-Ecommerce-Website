@@ -23,7 +23,7 @@ function Shop() {
         };
 
         axios
-        .get("https://clothing-ecommerce-website-mu76.vercel.app/product", config)
+        .get("https://clothing-ecommerce-website-backend.onrender.com/product", config)
             .then((res) => {
                 console.log(res);
                 

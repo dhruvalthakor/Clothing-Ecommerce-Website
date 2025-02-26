@@ -1,115 +1,96 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Product() {
+function Shop() {
+    const [lsData, setLsData] = useState(JSON.parse(localStorage.getItem("clothwabsitetoken")) || {});
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true); // Loading state
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        if (!lsData.token) {
+            navigate("/signin");
+            return;
+        }
 
-  const [productData, setproductData] = useState();
-  const [lsData, setLsData] = useState(JSON.parse(localStorage.getItem("clothwabsitetoken")) || {});
-  const [products, setproducts] = useState([]);
-  const [editproduct, setEditproduct] = useState(null);
-  const [addproduct, setaddproduct] = useState(null);
-  const navigate = useNavigate();
+        axios
+            .get("https://clothing-ecommerce-website-backend.onrender.com/product", {
+                headers: { authorization: `Bearer ${lsData.token}` },
+            })
+            .then((res) => setProducts(res.data.product || []))
+            .catch((err) => {
+                console.error(err);
+                if (err.response?.status === 401) navigate("/");
+            })
+            .finally(() => setLoading(false)); // Set loading to false after fetching
+    }, [lsData.token, navigate]);
 
-  useEffect(() => {
-      if (!lsData.token) {
-          navigate("/singin");
-          return;
-      }
+    const handleProductClick = (product) => {
+        navigate(`/Productdetail/${product._id}`);
+    };
 
-      const config = {
-          headers: {
-              authorization: `Bearer ${lsData.token}`,
-          },
-      };
-
-      axios
-      .get("https://clothing-ecommerce-website-backend.vercel.app/product", config)
-      .then((res) => {
-              setproducts(res.data.product || []);
-              console.log(res);
-              
-          }) 
-          .catch((err) => {
-              console.error(err);
-              if (err.response && err.response.status === 401) {
-                  navigate("/");
-              }
-          });
-  }, [lsData.token, navigate]);
-
-  const logout = () => {
-      localStorage.clear("clothwabsitetoken");
-      navigate("/login");
-  };
-
-
-  const handleProductClick = (product) => {
-    navigate(`/Prodectdetail/${product._id}`);
-  };
-
-
-
-
-  const newiconefuthion = (date2) => {
-    if (!date2) return null; // Handle missing date case
-
-    const date1 = new Date();
-    const productDate = new Date(date2); // Convert API date string to Date object
-
-    // Calculate difference in days
-    const daysDiff = Math.floor((date1 - productDate) / (1000 * 60 * 60 * 24));
-
-    if (daysDiff <= 3) {
-        return (
-            <div className="new-icone">
+    const renderNewIcon = (createdDate) => {
+        if (!createdDate) return null;
+        const daysDiff = Math.floor((new Date() - new Date(createdDate)) / (1000 * 60 * 60 * 24));
+        return daysDiff <= 3 ? (
+            <div className="new-icon">
                 <img
-                    className="new-icone-img"
+                    className="new-icon-img"
                     src="https://png.pngtree.com/png-vector/20221030/ourmid/pngtree-sign-of-newbanner-vector-concept-illustration-business-yellow-collection-vector-png-image_39897080.png"
                     alt="New Product"
                 />
             </div>
-        );
-    }
-    return null;
-};
+        ) : null;
+    };
 
-  
-  return (
-    <>
-      <section id="product1" className="section-p1">
-  <h2>Featured Products</h2>
-  <p>Summer Collection New Modern Design</p>
-  <div className="pro-container">
-  
-    {
-      products.slice(0, 8).map((data)=>(
-        <div className="pro relative" key={data._id} onClick={() => handleProductClick(data)}>
-        <img src={data.productimage} alt=""/>
-        <div className="des">
-          <span>{data.productbrand}</span>
-          <h5>{data.productname}</h5>
-          <div className="star">
-                    {Array.from({ length: Math.round(data.productrating) }).map((_, index) => (
-                        <i key={index} className="fas fa-star"></i>
-                    ))}
-                    {Array.from({ length: 5 - Math.round(data.productrating) }).map((_, index) => (
-                        <i key={index + 5} className="far fa-star"></i> // Outline star for remaining
-                    ))}
+    const renderSkeleton = () => (
+        Array.from({ length: 6 }).map((_, index) => (
+            <div className="pro skeleton" key={index}>
+                <div className="skeleton-img"></div>
+                <div className="des">
+                    <div className="skeleton-text short"></div>
+                    <div className="skeleton-text"></div>
+                    <div className="skeleton-stars"></div>
+                    <div className="skeleton-text price"></div>
                 </div>
-          <h4>${data.productprice}</h4>
-          {newiconefuthion(data.createdDate)}
-        </div>
-        <a href=""><i className="fal fa-shopping-cart cart"></i></a>
-      </div>
-      ))
-    }
-    
-  </div>
-</section>
-    </>
-  )
+                <div className="skeleton-btn"></div>
+            </div>
+        ))
+    );
+
+    return (
+        <section id="product1" className="section-p1 mt-10">
+            <h2>Featured Products</h2>
+            <p>Summer Collection New Modern Design</p>
+            <div className="pro-container">
+                {loading
+                    ? renderSkeleton()
+                    : products.map((product) => (
+                        <div className="pro relative" key={product._id} onClick={() => handleProductClick(product)}>
+                            <img src={product.productimage} alt={product.productname} />
+                            <div className="des">
+                                <span>{product.productbrand}</span>
+                                <h5>{product.productname}</h5>
+                                <div className="star">
+                                    {Array.from({ length: Math.round(product.productrating) }).map((_, i) => (
+                                        <i key={i} className="fas fa-star"></i>
+                                    ))}
+                                    {Array.from({ length: 5 - Math.round(product.productrating) }).map((_, i) => (
+                                        <i key={i + 5} className="far fa-star"></i>
+                                    ))}
+                                </div>
+                                <h4>${product.productprice}</h4>
+                                {renderNewIcon(product.createdDate)}
+                            </div>
+                            <button className="cart-btn">
+                                <i className="fal fa-shopping-cart cart"></i>
+                            </button>
+                        </div>
+                    ))}
+            </div>
+        </section>
+    );
 }
 
-export default Product
+export default Shop;
