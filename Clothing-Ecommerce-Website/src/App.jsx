@@ -46,7 +46,7 @@ function App() {
       <Route path="/singup" element={<SignUp/>} />
       {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
       {/* <Route path="*" element={<Navigate to="/dashboard/home" replace />} /> */}
-      <Route path="/AdminSignIn" element={<SignIn/>} />
+      {/* <Route path="/AdminSignIn" element={<SignIn/>} /> */}
 
     </Routes>
   );
