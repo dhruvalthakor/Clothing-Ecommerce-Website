@@ -11,8 +11,8 @@ import Footer from './usercomponents/Footer';
 import Prodectdetail from './usercomponents/Prodectdetail';
 import Shop from './usercomponents/Shop';
 import ShoppingCart from './usercomponents/ShoppingCart';
-import Signin from './usercomponents/Signin';
 import SignUp from './usercomponents/signup';
+import Signin from './usercomponents/signin';
 
 
 
