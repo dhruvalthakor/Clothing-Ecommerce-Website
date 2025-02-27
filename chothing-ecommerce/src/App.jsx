@@ -12,7 +12,8 @@ import Prodectdetail from './usercomponents/Prodectdetail';
 import Shop from './usercomponents/Shop';
 import ShoppingCart from './usercomponents/ShoppingCart';
 import Signin from './usercomponents/Signin';
-import SignUp from './usercomponents/SignUp';
+import SignUp from './usercomponents/signup';
+
 
 
 function Home() {
