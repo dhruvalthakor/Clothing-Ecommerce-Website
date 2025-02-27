@@ -65,9 +65,8 @@ function logout() {
                 <ul id="navbar" ref={navRef}>
                     <li><Link to="/" className="active">Home</Link></li>
                     <li><Link to="/shop">Shop</Link></li>
-                    <li><Link to="/blog">Blog</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/">About</Link></li>
+                    <li><Link to="/">Contact</Link></li>
                     <li>
                         <Link to="/ShoppingCart" id="lg-bag">
                             <i className="fal fa-shopping-bag"></i>
