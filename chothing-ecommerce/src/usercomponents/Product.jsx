@@ -9,10 +9,7 @@ function Shop() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!lsData.token) {
-            navigate("/signin");
-            return;
-        }
+        
 
         axios
             .get("https://clothing-ecommerce-website-backend.onrender.com/product", {

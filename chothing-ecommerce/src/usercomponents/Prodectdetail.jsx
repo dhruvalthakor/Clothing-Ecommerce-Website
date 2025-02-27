@@ -15,7 +15,7 @@ function Prodectdetail() {
 
   useEffect(() => {
     if (!lsData.token) {
-      navigate('/signin'); 
+      navigate('/singin'); 
       return;
     }
 

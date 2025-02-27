@@ -1,21 +1,18 @@
+import React from 'react'
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Dashboard, Auth } from "@/layouts";
-import Header from "./usercomponents/Header";
-import Herosection from "./usercomponents/Herosection";
-import Feature from "./usercomponents/Feature";
-import Product from "./usercomponents/Product";
-
-import Banner from "./usercomponents/Banner";
-import Smbanner from "./usercomponents/Smbanner";
-import Newsletter from "./usercomponents/Newsletter";
-import Footer from "./usercomponents/Footer";
-import Signin from "./usercomponents/signin";
-import SignUp from "./usercomponents/signup";
-import Prodectdetail from "./usercomponents/Prodectdetail";
-import Shop from "./usercomponents/Shop";
-import ShoppingCart from "./usercomponents/ShoppingCart";
-import { SignIn } from "./pages/auth";
-
+import Header from './usercomponents/Header';
+import Herosection from './usercomponents/Herosection';
+import Feature from './usercomponents/Feature';
+import Product from './usercomponents/Product';
+import Banner from './usercomponents/Banner';
+import Smbanner from './usercomponents/Smbanner';
+import Newsletter from './usercomponents/Newsletter';
+import Footer from './usercomponents/Footer';
+import Prodectdetail from './usercomponents/Prodectdetail';
+import Shop from './usercomponents/Shop';
+import ShoppingCart from './usercomponents/ShoppingCart';
+import Signin from './usercomponents/Signin';
+import SignUp from './usercomponents/SignUp';
 
 
 function Home() {
@@ -34,9 +31,8 @@ function ShoppingCartpage() {
 }
 
 function App() {
-  
-  <Home/>
   return (
+  
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/Prodectdetail/:id" element={<Prodectdetailpage/>} />
@@ -44,12 +40,8 @@ function App() {
       <Route path="/ShoppingCart" element={<ShoppingCartpage/>} />
       <Route path="/singin" element={<Signin/>} />
       <Route path="/singup" element={<SignUp/>} />
-      {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
-      {/* <Route path="*" element={<Navigate to="/dashboard/home" replace />} /> */}
-      {/* <Route path="/AdminSignIn" element={<SignIn/>} /> */}
-
     </Routes>
   );
 }
 
-export default App;
+export default App

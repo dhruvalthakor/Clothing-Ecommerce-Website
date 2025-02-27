@@ -28,10 +28,7 @@ function Header() {
     }, []);
 
     useEffect(() => {
-        if (!lsData.token) {
-            navigate("/signin"); // Corrected route
-            return;
-        }
+      
 
         axios
             .get("https://clothing-ecommerce-website-backend.onrender.com/cart", {
@@ -56,6 +53,11 @@ function Header() {
 
     }, [lsData.token, navigate]);
 
+function logout() {
+    localStorage.clear("clothwabsitetoken")
+    navigate("/singin")
+}
+
     return (
         <section id="header">
             <Link to="/"><img src="https://i.postimg.cc/x8ncvFjr/logo.png" alt="Logo" /></Link>
@@ -75,6 +77,13 @@ function Header() {
                     <li>
                         <a href="#" id="close" ref={closeRef}><i className="far fa-times"></i></a>
                     </li>
+                    <li>
+                    {lsData.token ? (
+                            <button className="btn " onClick={logout}>Logout</button>
+                        ) : (
+                            <Link className="btn " to="/singin">Login</Link>
+                        )}
+                    </li>
                 </ul>
             </div>
             <div id="mobile">
@@ -83,7 +92,13 @@ function Header() {
                     <span className="quantity">{products.length}</span>
                 </Link>
                 <i id="bar" className="fas fa-outdent" ref={barRef}></i>
+                       {lsData.token ? (
+                            <button className="btn btn-outline-danger" onClick={logout}>Logout</button>
+                        ) : (
+                            <Link className="btn btn-outline-primary" to="/signin">Login</Link>
+                        )}
             </div>
+         
         </section>
     );
 }

@@ -11,10 +11,7 @@ function Shop() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!lsData.token) {
-            navigate("/singin");
-            return;
-        }
+      
 
         const config = {
             headers: {
