@@ -35,7 +35,6 @@ function ShoppingCartpage() {
 
 function App() {
   
-  <Home/>
   return (
     <Routes>
       <Route path="/" element={<Home/>} />
